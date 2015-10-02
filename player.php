@@ -17,15 +17,19 @@ class Player
         $myCards = $myself->getHand();
 
         $decision = new Decisions($gameState);
+
+        if ($decision->isHeadsUp()) {
+            $minBet = $this->betMinimumRaise($gameState);
+            return (int)$minBet;
+        }
+
+
         if ($decision->shouldRaise($myCards)) {
             // all in
             return 9999999;
         }
 
-        if ($decision->isHeadsUp()) {
-            $minBet = $this->betMinimumRaise($game_state);
-            return (int)$minBet;
-        }
+        
         return 0;
     }
 
@@ -34,8 +38,8 @@ class Player
 
     }
 
-    private function betMinimumRaise($game_state)
+    private function betMinimumRaise(GameState $gameState)
     {
-        return $game_state['current_buy_in'] + $game_state['minimum_raise'];
+        return $gameState->current_buy_in + $gameState->minimum_raise;
     }
 }
