@@ -8,7 +8,16 @@
  */
 class GameState
 {
+
+    public function __construct($gameStateData) {
+
+        foreach ($gameStateData as $key => $value) {
+            $this->$key = $value;
+        }
+        return $this;
+    }
+
     public static function fromArray($array) {
-        return json_decode(json_encode($array));
+        return new GameState(json_decode(json_encode($array)));
     }
 }
