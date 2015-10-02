@@ -23,10 +23,6 @@ class Decisions
             return $this->cardsAnalizer->isPair($cards);
         }
 
-        $myself = $this->gameState->getMyself();
-        if($myself->isDealer) {
-            return true;
-        }
 
         return $this->cardsAnalizer->isHighPair($cards);
     }
