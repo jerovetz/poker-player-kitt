@@ -32,6 +32,14 @@ class GameState extends GameObject
 
     }
 
+    public function getCommunityCards() {
+        return $this->community_cards;
+    }
+
+    public function getAllCards() {
+        return array_merge($this->getMyself()->getHand(), $this->getCommunityCards());
+    }
+
     private function getPlayer($index)
     {
         return new MyPlayer($this->players[$index]);
