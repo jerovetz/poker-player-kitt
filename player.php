@@ -19,7 +19,7 @@ class Player
         $decision = new Decisions();
 
 
-        $outPlayers = $this->getOutPlayers($game_state);
+        $outPlayers = $gameState->playersWithStatus('out');
         // waiting to play untin we are in heads up
         if ($decision->shouldBet(count($outPlayers), count($game_state['players']))) {
             $minBet = $this->betMinimumRaise($game_state);
@@ -36,16 +36,5 @@ class Player
     private function betMinimumRaise($game_state)
     {
         return $game_state['current_buy_in'] + $game_state['minimum_raise'];
-    }
-
-    private function getOutPlayers($game_state)
-    {
-        $outPlayers = array();
-        foreach ($game_state['players'] as $player) {
-            if ($player['status'] == 'out') {
-                $outPlayers[] = $player;
-            }
-        }
-        return $outPlayers;
     }
 }
