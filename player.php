@@ -29,10 +29,10 @@ class Player
                 $callAmount = $this->call($gameState);
                 return (int)$callAmount;
             }
-            if ($myCards->isDealer && !$gameState->isSomeBodyRaised()) {
-                $minBet = $this->betMinimumRaise($gameState);
-                return (int)$minBet;
-            }
+//            if ($myCards->isDealer && !$gameState->isSomeBodyRaised()) {
+//                $minBet = $this->betMinimumRaise($gameState);
+//                return (int)$minBet;
+//            }
             return 0;
         }
         else
