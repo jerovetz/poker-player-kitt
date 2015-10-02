@@ -17,16 +17,12 @@ class Player
         $myCards = $myself->getHand();
 
         $decision = new Decisions($gameState);
-
         if ($decision->shouldRaise($myCards)) {
             // all in
             return 9999999;
         }
 
-
-        $outPlayers = $gameState->playersWithStatus('out');
-        // waiting to play untin we are in heads up
-        if ($decision->isHeadsUp(count($outPlayers), count($game_state['players']))) {
+        if ($decision->isHeadsUp()) {
             $minBet = $this->betMinimumRaise($game_state);
             return (int)$minBet;
         }
