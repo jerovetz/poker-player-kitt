@@ -25,7 +25,7 @@ class Decisions
 
         $activePlayers = $this->gameState->playersWithStatus('active');
         if (count($activePlayers) == 3) {
-            return;
+            return true;
         }
 
         if ($this->cardsAnalizer->isPair($cards)) {
