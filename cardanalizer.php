@@ -62,6 +62,13 @@ class CardAnalizer
         || $this->twoFigures($cards);
     }
 
+    public function IHavePair($allCards, $communityCards)
+    {
+        $communityDiff = $this->rankDiff($communityCards);
+        $allDiff = $this->rankDiff($allCards);
+        return $allDiff[0] > $communityDiff[0];
+    }
+
 
 
     private function countSameAttributes(array $cards, $attribute)
