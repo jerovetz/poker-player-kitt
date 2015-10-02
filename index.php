@@ -15,3 +15,7 @@ switch($_POST['action'])
     case 'version':
         echo Player::VERSION;
 }
+
+function __autoload($class) {
+    require_once strtolower($class) . '.php';
+}
