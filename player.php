@@ -6,8 +6,7 @@ class Player
 
     public function betRequest($game_state)
     {
-        $this->betMinimumRaise($game_state);
-        return 0;
+        return $this->betMinimumRaise($game_state);
     }
 
     public function showdown($game_state)
