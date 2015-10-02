@@ -17,7 +17,7 @@ class Rainman
 
     public static function getRank($cards)
     {
-        return self::fetch($cards)->rank;
+        return (int)self::fetch($cards)->rank;
     }
 
 }

@@ -30,6 +30,14 @@ class Player
             }
             return 0;
         }
+        else
+        {
+            $rank = Rainman::getRank($gameState->getAllCards());
+            if ($rank > 0) {
+                $callAmount = $this->call($gameState);
+                return (int)$callAmount;
+            }
+        }
 
 
         if ($decision->shouldRaise($myCards)) {
