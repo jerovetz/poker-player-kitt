@@ -40,8 +40,13 @@ class Player
         }
         else
         {
+            if ($cardAnalizer->IHavePair($gameState->getAllCards(), $gameState->getCommunityCards())) {
+                $minBet = $this->betMinimumRaise($gameState);
+                return (int)$minBet;
+            }
+
             $rank = Rainman::getRank($gameState->getAllCards());
-            if ($rank > 0) {
+            if ($rank > 2) {
                 if (rand(0,1)) {
                     $minBet = $this->betMinimumRaise($gameState);
                     return (int)$minBet;
