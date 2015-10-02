@@ -10,7 +10,14 @@ class GameState extends GameObject
 {
 
     public function getMyself() {
-        return new MyPlayer($this->players[$this->in_action]);
+        $myself = $this->getPlayer($this->in_action);
+        $dealer = $this->getDealer();
+        $myself->isDealer = $myself->id === $dealer->id;
+        return $myself;
+    }
+
+    public function getDealer(){
+        return $this->getPlayer($this->dealer);
     }
 
     public function playersWithStatus(array $status)
@@ -23,6 +30,11 @@ class GameState extends GameObject
         }
         return $outPlayers;
 
+    }
+
+    private function getPlayer($index)
+    {
+        return new MyPlayer($this->players[$index]);
     }
 
 }
