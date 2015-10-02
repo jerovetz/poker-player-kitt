@@ -19,10 +19,10 @@ class Player
         $cardAnalizer = new CardAnalizer();
         $decision = new Decisions($gameState);
 
-        $outPlayers = $activePlayers = $gameState->playersWithStatus('out');
-        if (count($outPlayers) < 2) {
-            return 0;
-        }
+//        $outPlayers = $activePlayers = $gameState->playersWithStatus('out');
+//        if (count($outPlayers) < 2) {
+//            return 0;
+//        }
 
         if ($gameState->isPreFlop()) {
             if ($cardAnalizer->hasPreFlopPotential($myCards)) {
