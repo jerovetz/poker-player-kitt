@@ -45,6 +45,7 @@ class Player
                 return 999999;
             }
         }
+        
 
 
         if ($decision->shouldRaise($myCards)) {
