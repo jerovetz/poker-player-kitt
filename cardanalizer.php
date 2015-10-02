@@ -23,7 +23,7 @@ class CardAnalizer
     public function isHighPair(array $cards)
     {
         return $this->isPair($cards)
-            && $this->mapRankToValues($cards[0]->rank) >= 10;
+            && $this->mapRankToValues($cards[0]->rank) >= 8;
     }
 
     public function rankDiff(array $cards)
