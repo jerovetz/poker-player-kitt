@@ -46,7 +46,8 @@ class Player
             }
 
             $rank = Rainman::getRank($gameState->getAllCards());
-            if ($rank > 2) {
+            $noService = array(1,2,3);
+            if (!in_array($rank, $noService)) {
                 if (rand(0,1)) {
                     $minBet = $this->betMinimumRaise($gameState);
                     return (int)$minBet;
