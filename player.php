@@ -8,7 +8,7 @@ class Player
     {
         $activePlayers = $this->getActivePlayers($game_state);
         // waiting to play untin we are in heads up
-        if(count($activePlayers) == 2) {
+        if(count($activePlayers) == 1) {
             $minBet = $this->betMinimumRaise($game_state);
             return (int)$minBet;
         }
