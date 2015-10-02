@@ -19,20 +19,23 @@ class Player
         $cardAnalizer = new CardAnalizer();
         $decision = new Decisions($gameState);
 
-//        $outPlayers = $activePlayers = $gameState->playersWithStatus('out');
-//        if (count($outPlayers) < 2) {
-//            return 0;
-//        }
-
         if ($gameState->isPreFlop()) {
-            if ($cardAnalizer->hasPreFlopPotential($myCards)) {
+
+            if ($cardAnalizer->isHighPair($myCards)) {
+                $bet = $myself->stack / 2;
+                return (int)$bet;
+            }
+
+            if ($cardAnalizer->isPair($myCards)) {
+                $minBet = $this->betMinimumRaise($gameState);
+                return (int)$minBet;
+            }
+
+            if (!$gameState->isSomeBodyRaised()) {
                 $callAmount = $this->call($gameState);
                 return (int)$callAmount;
             }
-//            if ($myCards->isDealer && !$gameState->isSomeBodyRaised()) {
-//                $minBet = $this->betMinimumRaise($gameState);
-//                return (int)$minBet;
-//            }
+
             return 0;
         }
         else
