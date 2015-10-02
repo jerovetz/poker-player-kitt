@@ -17,7 +17,7 @@ class GameState extends GameObject
     {
         $outPlayers = array();
         foreach ($this->players as $player) {
-            if ($player['status'] == $status) {
+            if ($player->status == $status) {
                 $outPlayers[] = $player;
             }
         }
