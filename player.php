@@ -18,18 +18,17 @@ class Player
 
         $decision = new Decisions($gameState);
 
-        if ($decision->isHeadsUp()) {
-            $minBet = $this->betMinimumRaise($gameState);
-            return (int)$minBet;
-        }
-
 
         if ($decision->shouldRaise($myCards)) {
             // all in
             return 9999999;
         }
 
-        
+        if ($decision->isHeadsUp()) {
+            $minBet = $this->betMinimumRaise($gameState);
+            return (int)$minBet;
+        }
+
         return 0;
     }
 
