@@ -22,7 +22,7 @@ $analizer = new CardAnalizer();
 $testCards = json_decode('[
     {
         "rank": "4",
-      "suit": "spades"
+      "suit": "clubs"
     },
     {
         "rank": "5",
@@ -33,3 +33,5 @@ $testCards = json_decode('[
       "suit": "clubs"
     }
   ]');
+
+var_dump($analizer->isSuited($testCards));

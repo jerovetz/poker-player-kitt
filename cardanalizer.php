@@ -56,9 +56,9 @@ class CardAnalizer
 
     private function countSameAttributes(array $cards, $attribute)
     {
-        $cardAttrs = array_unique(array_map(function($card) use ($attribute) {
+        $cardAttrs = array_map(function($card) use ($attribute) {
             return $card->$attribute;
-        }, $cards));
+        }, $cards);
 
         $cardAttrCounts = array_count_values($cardAttrs);
         arsort($cardAttrCounts);
