@@ -37,7 +37,10 @@ class Player
                 return (int)$callAmount;
             }
 
-            if (!is_numeric($myCards[0]->rank) || !is_numeric($myCards[1]->rank)) {
+            $c1Rank = CardHelper::mapRankToValues($myCards[0]->rank);
+            $c2Rank = CardHelper::mapRankToValues($myCards[1]->rank);
+
+            if ($c1Rank > 10 || $c2Rank > 10) {
                 $callAmount = $this->call($gameState);
                 return (int)$callAmount;
             }
