@@ -20,7 +20,7 @@ class Player
         $decision = new Decisions($gameState);
 
         $outPlayers = $activePlayers = $gameState->playersWithStatus('out');
-        if (count($outPlayers) == 0) {
+        if (count($outPlayers) < 2) {
             return 0;
         }
 
