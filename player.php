@@ -1,5 +1,7 @@
 <?php
 
+require_once 'cardanalizer.php';
+
 class Player
 {
     const VERSION = "Default PHP folding player";
