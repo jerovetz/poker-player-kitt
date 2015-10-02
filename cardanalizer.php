@@ -20,7 +20,7 @@ class CardAnalizer
     public function isConnected(array $cards)
     {
         $diffs = $this->rankDiff($cards);
-        return isset($diffs[1]) && $diffs[1] >= 2;
+        return isset($diffs[1]) && $diffs[1] >= 1;
     }
 
     public function isPair(array $cards)
