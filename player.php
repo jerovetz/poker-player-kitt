@@ -1,6 +1,9 @@
 <?php
 
 require_once 'cardanalizer.php';
+require_once 'gameobject.php';
+require_once 'gamestate.php';
+require_once 'myplayer.php';
 
 class Player
 {
@@ -8,6 +11,13 @@ class Player
 
     public function betRequest($game_state)
     {
+        $gameState = GameState::fromArray($game_state);
+        $myself = $gameState->getMyself();
+        $myCards = $myself->getHand();
+
+
+
+
         $outPlayers = $this->getOutPlayers($game_state);
         // waiting to play untin we are in heads up
         if(count($outPlayers) == (count($game_state['players']) - 2)) {

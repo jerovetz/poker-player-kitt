@@ -1,6 +1,4 @@
 <?php
-include('gameobject.php');
-include('myplayer.php');
 
 /**
  * Created by PhpStorm.
