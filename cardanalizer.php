@@ -11,7 +11,8 @@ class CardAnalizer
 
     public function isConnected(array $cards)
     {
-        return abs($this->rankDiff($cards)) == 1;
+        $diff = abs($this->rankDiff($cards));
+        return $diff == 1 or $diff == 12;
     }
 
     public function isPair(array $cards)
