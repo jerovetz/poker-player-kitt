@@ -63,4 +63,9 @@ class GameState extends GameObject
         return empty($communityCards);
     }
 
+    public function isSomeBodyRaised()
+    {
+        return $this->current_buy_in > 2 * $this->small_blind;
+    }
+
 }

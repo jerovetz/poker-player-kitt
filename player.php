@@ -16,7 +16,20 @@ class Player
         $myself = $gameState->getMyself();
         $myCards = $myself->getHand();
 
+        $cardAnalizer = new CardAnalizer();
         $decision = new Decisions($gameState);
+
+        if ($gameState->isPreFlop()) {
+            if ($cardAnalizer->hasPreFlopPotential($myCards)) {
+                $callAmount = $this->call($gameState);
+                return (int)$callAmount;
+            }
+            if ($myCards->isDealer && !$gameState->isSomeBodyRaised()) {
+                $minBet = $this->betMinimumRaise($gameState);
+                return (int)$minBet;
+            }
+            return 0;
+        }
 
 
         if ($decision->shouldRaise($myCards)) {
@@ -35,5 +48,10 @@ class Player
     private function betMinimumRaise(GameState $gameState)
     {
         return $gameState->current_buy_in + $gameState->minimum_raise;
+    }
+
+    private function call(GameState $gameState)
+    {
+        return $gameState->current_buy_in;
     }
 }

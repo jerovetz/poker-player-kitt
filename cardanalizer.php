@@ -47,6 +47,11 @@ class CardAnalizer
         return $diffCount;
     }
 
+    public function hasPreFlopPotential(array $cards)
+    {
+        return $this->isPair($cards) || $this->isConnected($cards) || $this->isSuited($cards);
+    }
+
 
 
     private function countSameAttributes(array $cards, $attribute)
