@@ -4,6 +4,7 @@ require_once 'cardanalizer.php';
 require_once 'gameobject.php';
 require_once 'gamestate.php';
 require_once 'myplayer.php';
+require_once 'decisions.php';
 
 class Player
 {
@@ -15,12 +16,12 @@ class Player
         $myself = $gameState->getMyself();
         $myCards = $myself->getHand();
 
-
+        $decision = new Decisions();
 
 
         $outPlayers = $this->getOutPlayers($game_state);
         // waiting to play untin we are in heads up
-        if(count($outPlayers) == (count($game_state['players']) - 2)) {
+        if ($decision->shouldBet(count($outPlayers), count($game_state['players']))) {
             $minBet = $this->betMinimumRaise($game_state);
             return (int)$minBet;
         }

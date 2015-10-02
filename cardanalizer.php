@@ -6,7 +6,7 @@ class CardAnalizer
 
     public function isSuited(array $cards) 
     {
-        return $cards[0]['suit'] == $cards[1]['suit'];
+        return $cards[0]->suit == $cards[1]->suit;
     }
 
     public function isConnected(array $cards)
@@ -22,8 +22,8 @@ class CardAnalizer
 
     public function rankDiff(array $cards)
     {
-        $firstRank = $this->mapRankToValues($cards[0]['rank']);
-        $secondRank = $this->mapRankToValues($cards[1]['rank']);
+        $firstRank = $this->mapRankToValues($cards[0]->rank);
+        $secondRank = $this->mapRankToValues($cards[1]->rank);
         return $firstRank - $secondRank;
     }
 
