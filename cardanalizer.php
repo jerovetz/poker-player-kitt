@@ -32,7 +32,7 @@ class CardAnalizer
     public function isHighPair(array $cards)
     {
         return $this->isPair($cards)
-            && CardHelper::mapRankToValues($cards[0]->rank) >= 8;
+            && CardHelper::mapRankToValues($cards[0]->rank) >= 11;
     }
 
     public function twoFigures(array $cards)
