@@ -37,14 +37,9 @@ class Player
         }
         else
         {
-            if ($decision->isHeadsUp()) {
-                $callAmount = $this->call($gameState);
-                return (int)$callAmount;
-            } else {
-                $rank = Rainman::getRank($gameState->getAllCards());
-                if ($rank > 0) {
-                    return 999999;
-                }
+            $rank = Rainman::getRank($gameState->getAllCards());
+            if ($rank > 0) {
+                return 999999;
             }
         }
 
