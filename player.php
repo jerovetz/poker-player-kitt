@@ -8,7 +8,7 @@ require_once 'decisions.php';
 
 class Player
 {
-    const VERSION = "Default PHP folding player";
+    const VERSION = "Project Grinder";
 
     public function betRequest($game_state)
     {
