@@ -16,7 +16,7 @@ class Player
         $myself = $gameState->getMyself();
         $myCards = $myself->getHand();
 
-        $decision = new Decisions();
+        $decision = new Decisions($gameState);
 
         if ($decision->shouldRaise($myCards)) {
             // all in

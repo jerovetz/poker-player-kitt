@@ -20,6 +20,12 @@ class CardAnalizer
         return $this->rankDiff($cards) == 0;
     }
 
+    public function isHighPair(array $cards)
+    {
+        return $this->isPair($cards)
+            && $this->mapRankToValues($cards[0]->rank) >= 10;
+    }
+
     public function rankDiff(array $cards)
     {
         $firstRank = $this->mapRankToValues($cards[0]->rank);

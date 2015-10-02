@@ -5,20 +5,24 @@ class Decisions
 {
     private $cardsAnalizer;
 
-    public function __construct()
+    public function __construct(GameState $gameState)
     {
         $this->cardsAnalizer = new CardAnalizer();
+        $this->gameState = $gameState;
     }
 
-    public function isHeadsUp($countOfOutPlayers, $countOfAllPlayers)
+    public function isHeadsUp()
     {
-        return $countOfOutPlayers == $countOfAllPlayers - 2;
+        $outPlayers = $this->gameState->playersWithStatus('out');
+        return count($outPlayers) == count($this->gameState->players) - 2;
     }
 
     public function shouldRaise(array $cards)
     {
-        $isPair = $this->cardsAnalizer->isPair($cards);
-        return $isPair;
+        if ($this->isHeadsUp()){
+            return $this->cardsAnalizer->isPair($cards);
+        }
+        return $this->cardsAnalizer->isHighPair($cards);
     }
 
 }
