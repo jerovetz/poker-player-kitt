@@ -9,14 +9,16 @@
 class GameState extends GameObject
 {
 
-    public function getMyself() {
+    public function getMyself()
+    {
         $myself = $this->getPlayer($this->in_action);
         $dealer = $this->getDealer();
         $myself->isDealer = $myself->id === $dealer->id;
         return $myself;
     }
 
-    public function getDealer(){
+    public function getDealer()
+    {
         return $this->getPlayer($this->dealer);
     }
 
@@ -32,17 +34,27 @@ class GameState extends GameObject
 
     }
 
-    public function getCommunityCards() {
-        return $this->community_cards;
+    public function getCommunityCards()
+    {
+        return $this->sortCards($this->community_cards);
     }
 
-    public function getAllCards() {
-        return array_merge($this->getMyself()->getHand(), $this->getCommunityCards());
+    public function getAllCards()
+    {
+        return $this->sortCards(array_merge($this->getMyself()->getHand(), $this->getCommunityCards()));
     }
 
     private function getPlayer($index)
     {
         return new MyPlayer($this->players[$index]);
+    }
+
+    public function sortCards($cards)
+    {
+        usort($cards, function($a, $b) {
+            return (CardHelper::mapRankToValues($a->rank) < CardHelper::mapRankToValues($b->rank)) ? -1 : 1;
+        });
+        return $cards;
     }
 
 }
