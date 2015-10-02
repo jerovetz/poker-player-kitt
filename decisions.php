@@ -24,7 +24,7 @@ class Decisions
         }
 
         $activePlayers = $this->gameState->playersWithStatus('active');
-        if (count($activePlayers) == 3) {
+        if (count($activePlayers) <= 3) {
             return true;
         }
 
