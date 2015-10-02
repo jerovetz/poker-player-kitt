@@ -43,8 +43,7 @@ class Player
             } else {
                 $rank = Rainman::getRank($gameState->getAllCards());
                 if ($rank > 0) {
-                    $callAmount = $this->call($gameState);
-                    return (int)$callAmount;
+                    return 999999;
                 }
             }
         }
