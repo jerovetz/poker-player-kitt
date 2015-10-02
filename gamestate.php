@@ -13,7 +13,7 @@ class GameState extends GameObject
         return new MyPlayer($this->players[$this->in_action]);
     }
 
-    public function playersWithStatus(array $status)
+    public function playersWithStatus($status)
     {
         $outPlayers = array();
         foreach ($this->players as $player) {
