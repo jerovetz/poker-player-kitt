@@ -16,3 +16,20 @@ $output = ob_get_clean();
 
 echo 'Game bets: ' . $output . ' -> ' . (is_numeric($output)? 'OK' : 'FAIL') . "\n";
 
+
+
+$analizer = new CardAnalizer();
+$testCards = json_decode('[
+    {
+        "rank": "4",
+      "suit": "spades"
+    },
+    {
+        "rank": "5",
+      "suit": "hearts"
+    },
+    {
+        "rank": "6",
+      "suit": "clubs"
+    }
+  ]');

@@ -14,25 +14,19 @@ class CardAnalizer
 
     public function countSuit(array $cards)
     {
-        $suits = array_unique(array_map(function($cards) {
-            return $cards->suit;
-        }, $cards));
-
-        $suitsCount = array_count_values($suits);
-        arsort($suitsCount);
-
-        return $suitsCount;
+        return $this->countSameAttributes($cards, 'suit');
     }
 
     public function isConnected(array $cards)
     {
-        $diff = abs($this->rankDiff($cards));
-        return $diff == 1 or $diff == 12;
+        $diffs = $this->rankDiff($cards);
+        return isset($diffs[1]) && $diffs[1] >= 2;
     }
 
     public function isPair(array $cards)
     {
-        return $this->rankDiff($cards) == 0;
+        $diffs = $this->rankDiff($cards);
+        return isset($diffs[0]) && $diffs[0] >= 1;
     }
 
     public function isHighPair(array $cards)
@@ -43,10 +37,27 @@ class CardAnalizer
 
     public function rankDiff(array $cards)
     {
-        $firstRank = CardHelper::mapRankToValues($cards[0]->rank);
-        $secondRank = CardHelper::mapRankToValues($cards[1]->rank);
-        return $firstRank - $secondRank;
+        $diffs = array();
+        for($i = 1; $i < count($cards); $i++)
+            $diffs[] = CardHelper::mapRankToValues($cards[$i]->rank) - CardHelper::mapRankToValues($cards[$i - 1]->rank);
+
+        $diffCount = array_count_values($diffs);
+        arsort($diffCount);
+
+        return $diffCount;
     }
 
 
+
+    private function countSameAttributes(array $cards, $attribute)
+    {
+        $cardAttrs = array_unique(array_map(function($card) use ($attribute) {
+            return $card->$attribute;
+        }, $cards));
+
+        $cardAttrCounts = array_count_values($cardAttrs);
+        arsort($cardAttrCounts);
+
+        return $cardAttrCounts;
+    }
 }
