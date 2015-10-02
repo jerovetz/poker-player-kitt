@@ -1,4 +1,6 @@
 <?php
+include('gameobject.php');
+include('myplayer.php');
 
 /**
  * Created by PhpStorm.
@@ -6,23 +8,11 @@
  * Date: 02/10/15
  * Time: 10:09
  */
-class GameState
+class GameState extends GameObject
 {
 
-    public function __construct($gameStateData) {
-
-        foreach ($gameStateData as $key => $value) {
-            $this->$key = $value;
-        }
-        return $this;
-    }
-
-    public static function fromArray($array) {
-        return new GameState(json_decode(json_encode($array)));
-    }
-
     public function getMyself() {
-        return $this->players[$this->in_action];
+        return new MyPlayer($this->players[$this->in_action]);
     }
 
 }
