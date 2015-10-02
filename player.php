@@ -18,10 +18,15 @@ class Player
 
         $decision = new Decisions();
 
+        if ($decision->shouldRaise($myCards)) {
+            // all in
+            return 9999999;
+        }
+
 
         $outPlayers = $gameState->playersWithStatus('out');
         // waiting to play untin we are in heads up
-        if ($decision->shouldBet(count($outPlayers), count($game_state['players']))) {
+        if ($decision->isHeadsUp(count($outPlayers), count($game_state['players']))) {
             $minBet = $this->betMinimumRaise($game_state);
             return (int)$minBet;
         }

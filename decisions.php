@@ -10,7 +10,7 @@ class Decisions
         $this->cardsAnalizer = new CardAnalizer();
     }
 
-    public function shouldBet($countOfOutPlayers, $countOfAllPlayers)
+    public function isHeadsUp($countOfOutPlayers, $countOfAllPlayers)
     {
         return $countOfOutPlayers == $countOfAllPlayers - 2;
     }
