@@ -57,4 +57,10 @@ class GameState extends GameObject
         return $cards;
     }
 
+    public function isPreFlop()
+    {
+        $communityCards = $this->getCommunityCards();
+        return empty($communityCards);
+    }
+
 }
