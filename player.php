@@ -19,6 +19,7 @@ class Player
         $cardAnalizer = new CardAnalizer();
         $decision = new Decisions($gameState);
 
+
         if ($gameState->isPreFlop()) {
 
             if ($cardAnalizer->isHighPair($myCards)) {
@@ -32,6 +33,11 @@ class Player
             }
 
             if (!$gameState->isSomeBodyRaised()) {
+                $callAmount = $this->call($gameState);
+                return (int)$callAmount;
+            }
+
+            if (!is_numeric($myCards[0]->rank) || !is_numeric($myCards[1]->rank)) {
                 $callAmount = $this->call($gameState);
                 return (int)$callAmount;
             }
