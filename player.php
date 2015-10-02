@@ -6,9 +6,9 @@ class Player
 
     public function betRequest($game_state)
     {
-        $activePlayers = $this->getActivePlayers($game_state);
+        $outPlayers = $this->getOutPlayers($game_state);
         // waiting to play untin we are in heads up
-        if(count($activePlayers) == 1) {
+        if(count($outPlayers) == (count($game_state['players']) - 2)) {
             $minBet = $this->betMinimumRaise($game_state);
             return (int)$minBet;
         }
@@ -25,14 +25,14 @@ class Player
         return $game_state['current_buy_in'] + $game_state['minimum_raise'];
     }
 
-    private function getActivePlayers($game_state)
+    private function getOutPlayers($game_state)
     {
-        $activePlayers = array();
+        $outPlayers = array();
         foreach ($game_state['players'] as $player) {
-            if ($player['status'] == 'active') {
-                $activePlayers[] = $player;
+            if ($player['status'] == 'out') {
+                $outPlayers[] = $player;
             }
         }
-        return $activePlayers;
+        return $outPlayers;
     }
 }
