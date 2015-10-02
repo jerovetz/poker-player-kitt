@@ -27,8 +27,8 @@ class Player
             }
 
             if ($cardAnalizer->isPair($myCards)) {
-                $minBet = $this->betMinimumRaise($gameState);
-                return (int)$minBet;
+                $callAmount = $this->call($gameState);
+                return (int)$callAmount;
             }
 
             if (!$gameState->isSomeBodyRaised()) {
