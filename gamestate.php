@@ -20,4 +20,9 @@ class GameState
     public static function fromArray($array) {
         return new GameState(json_decode(json_encode($array)));
     }
+
+    public function getMyself() {
+        return $this->players[$this->in_action];
+    }
+
 }
