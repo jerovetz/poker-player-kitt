@@ -45,15 +45,9 @@ class Player
                 return 999999;
             }
         }
-        
-
-
-        if ($decision->shouldRaise($myCards)) {
-            $minBet = $this->betMinimumRaise($gameState);
-            return (int)$minBet;
-        }
 
         return 0;
+
     }
 
     public function showdown($game_state)
