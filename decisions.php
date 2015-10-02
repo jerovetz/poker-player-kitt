@@ -20,11 +20,19 @@ class Decisions
     public function shouldRaise(array $cards)
     {
         if ($this->isHeadsUp()){
-            return $this->cardsAnalizer->isPair($cards);
+            return true;
         }
 
+        $activePlayers = $this->gameState->playersWithStatus('active');
+        if (count($activePlayers) == 3) {
+            return;
+        }
 
-        return $this->cardsAnalizer->isHighPair($cards);
+        if ($this->cardsAnalizer->isPair($cards)) {
+            return true;
+        }
+
+        return false;
     }
 
 }
