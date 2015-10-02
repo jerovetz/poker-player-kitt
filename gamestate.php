@@ -20,7 +20,7 @@ class GameState extends GameObject
         return $this->getPlayer($this->dealer);
     }
 
-    public function playersWithStatus(array $status)
+    public function playersWithStatus($status)
     {
         $outPlayers = array();
         foreach ($this->players as $player) {
