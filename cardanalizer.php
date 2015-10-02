@@ -35,6 +35,13 @@ class CardAnalizer
             && CardHelper::mapRankToValues($cards[0]->rank) >= 8;
     }
 
+    public function twoFigures(array $cards)
+    {
+        $c1Rank = CardHelper::mapRankToValues($cards[0]->rank);
+        $c2Rank = CardHelper::mapRankToValues($cards[1]->rank);
+        return $c1Rank >= 10 && $c2Rank >= 10;
+    }
+
     public function rankDiff(array $cards)
     {
         $diffs = array();
@@ -49,7 +56,10 @@ class CardAnalizer
 
     public function hasPreFlopPotential(array $cards)
     {
-        return $this->isPair($cards) || $this->isConnected($cards) || $this->isSuited($cards);
+        return $this->isPair($cards)
+        || $this->isConnected($cards)
+        || $this->isSuited($cards)
+        || $this->twoFigures($cards);
     }
 
 
